@@ -54,6 +54,12 @@ function calculateResults(){
 
 // Show error function
 function showError(error) {
+  // Show results
+  document.getElementById('results').style.display = 'none';
+
+  // Hide loader
+  document.getElementById('loading').style.display = 'none';
+
   // Get elements
   const card = document.querySelector('.card');
   const heading = document.querySelector('.heading');
