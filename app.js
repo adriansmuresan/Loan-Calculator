@@ -18,11 +18,11 @@ function calculateResults(e){
 
   //Set variables for the amounts/values
   const principal = parseFloat(amount.value);
-  const calculatedInterest = parseFloat(interest.value) /100 /12;
+  const calculatedInterest = parseFloat(interest.value) / 100 / 12;
   const calculatedPayments = parseFloat(years.value) * 12;
 
   // Compute monthly payment
-  const x = Math.pow(1 + calculatedInterest, calculatedInterest);
+  const x = Math.pow(1 + calculatedInterest, calculatedPayments);
   const monthly = (principal*x*calculatedInterest)/(x-1);
 
   // Check if monthly is a finite number
@@ -31,8 +31,21 @@ function calculateResults(e){
     totalPayment.value = (monthly * calculatedPayments).toFixed(2);
     totalInterest.value = ((monthly * calculatedPayments) - principal ).toFixed(2);
   } else {
-
+    showError('Please check your numbers');
   }
 
   e.preventDefault();
+}
+
+// Show error function
+function showError(error) {
+  //Create div 
+  const errorDiv = document.createElement('div');
+
+  // Adds class
+  errorDiv.className = 'alert alert-danger';
+
+  // Create text node and append to div
+  errorDiv.appendChild(document.createTextNode(error));
+
 }
