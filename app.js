@@ -39,6 +39,10 @@ function calculateResults(e){
 
 // Show error function
 function showError(error) {
+  // Get elements
+  const card = document.querySelector('.card');
+  const heading = document.querySelector('.heading');
+
   //Create div 
   const errorDiv = document.createElement('div');
 
@@ -47,5 +51,8 @@ function showError(error) {
 
   // Create text node and append to div
   errorDiv.appendChild(document.createTextNode(error));
+
+  // Insert error above heading
+  card.insertBefore(errorDiv, heading);
 
 }
