@@ -21,5 +21,18 @@ function calculateResults(e){
   const calculatedInterest = parseFloat(interest.value) /100 /12;
   const calculatedPayments = parseFloat(years.value) * 12;
 
+  // Compute monthly payment
+  const x = Math.pow(1 + calculatedInterest, calculatedInterest);
+  const monthly = (principal*x*calculatedInterest)/(x-1);
+
+  // Check if monthly is a finite number
+  if(isFinite(monthly)) {
+    monthlyPayment.value = monthly.toFixed(2);
+    totalPayment.value = (monthly * calculatedPayments).toFixed(2);
+    totalInterest.value = ((monthly * calculatedPayments) - principal ).toFixed(2);
+  } else {
+
+  }
+
   e.preventDefault();
 }
